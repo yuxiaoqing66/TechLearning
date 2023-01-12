@@ -1,0 +1,24 @@
+<script>
+    var m = new Map([['alice', 155], ['bob', 177], ['lily', 166]]);
+    m.forEach(function (value, key, map) {
+        console.log(value);
+    });
+    // function foo(a, b) {
+    // var i, rest = [];
+    // if (arguments.length > 2) {
+    //     for (i = 2; i<arguments.length; i++) {
+    //         rest.push(arguments[i]);
+    //     }
+    // }
+    
+    // console.log('a = ' + a);
+    // console.log('b = ' + b);
+    // console.log(rest);
+    // }
+    function foo(a, b, ...rest) {
+    console.log('a = ' + a);
+    console.log('b = ' + b);
+    console.log(rest);
+}
+    foo(2,3,4,5)
+</script>
