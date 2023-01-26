@@ -121,3 +121,13 @@
 - 在从branch2创建branch1至merge时，branch2有修改，且与branch1的修改修改了同一地方：
   
   <font color=red>产生合并冲突 </font>
+  
+  **产生冲突后的处理方法：**
+  ```git
+  git status  # 查看冲突位置
+  # 打开冲突文件，修改并解决冲突
+  git add . 
+  git commit -m "merge..."
+  git push origin  # 使用这种方法会自动将branch1删除
+  git push origin branch2  # 使用这种方法不会将branch1删除
+  ```
