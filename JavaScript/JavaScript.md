@@ -109,6 +109,7 @@ HTML中 `<script></script>`标签内使用JavaScript
     - const
       - 定义时赋值，一旦赋值，无法再次赋值
       - 被赋予的值能够更改，只是无法再用赋值罢了
+      - 被块级域限制（{}）
 - ES6引入
   - Map: 键值对的数组
     - `var m = new Map([['Bob',177],['Miseal',175],['Brownth',188]]);`
@@ -152,3 +153,49 @@ HTML中 `<script></script>`标签内使用JavaScript
   - 参数少于所需参数，有时返回NaN，也不报错
   - function内部默认定义了一个数组，名称为arguments，内部存了所有的参数
   - ES6引入rest参数：`function(a,b,...rest){};//rest就是除了a,b以外传入的参数数组`
+
+#### 作用域
+
+- 函数作用域
+  - var作用域就是函数作用域
+  - 作用域内部有声明提升，即所有变量的声明会被提升到块的开始。
+- 块级作用域
+  - let和const的域，以{}包裹
+- 全局作用域
+  - javascript默认有一个全局变量window
+  - 全局作用域的变量实际上被绑定到window的一个属性
+  - 如果想要定义全局变量，尽量自己只将一个全局变量绑定到window，再把所有自己定义的所有全局变量、函数绑定到这一个全局变量中
+
+#### 解构赋值
+
+javascript支持解构赋值，可以同时对一组变量进行赋值。
+
+```javascript
+var [x,y,z] = ["hello",2,"world"];	//x="hello",y=2,z="world"
+let [x,[y,z]] = ["hello",[2,"world"]];
+//x="hello",y=2,z="world"
+var person = {
+    name: '小明',
+    age: 20,
+    gender: 'male',
+    passport: 'G-12345678',
+    school: 'No.4 middle school',
+    address: {
+        city: 'Beijing',
+        street: 'No.1 Road',
+        zipcode: '100001'
+    }
+};
+let {name,passport:id,address:{city,zipcode}} = person;
+//name="小明",id ='G-12345678',city = 'Beijing',zipcode='100001'
+//不存在的属性会被赋值为undefined
+//以下语句会报错：
+var x,y;
+{x,y} = {name:"小米",x:100,y:200};
+//正确的应该是：
+({x,y} = {name:"小米",x:100,y:200});
+//获取当前页面的域名和路径：
+var {hostname:domain,pathname:path} = location;
+```
+
+#### 对象的方法
